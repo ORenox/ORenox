@@ -1,4 +1,6 @@
-## Hi there 👋
+# Hi there, I am Renato or you can call me RenOX👋
+
+The reason I am here on GitHub is that I want to contribute with other programmers and share my personal projects with the worldwide community. 
 
 <!--
 **ORenox/ORenox** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
