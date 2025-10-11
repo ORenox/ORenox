@@ -3,7 +3,7 @@
 The reason I am here on GitHub is that I want to contribute with other programmers and share my personal projects with the worldwide community. 
 
 
-<img src="https://i.imgur.com/2u5fXYs.png" alt="Image of the Renox logo">
+<img src="RenoxLogo.png" alt="Image of the Renox logo">
 
 <div align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40" height="40"/>
