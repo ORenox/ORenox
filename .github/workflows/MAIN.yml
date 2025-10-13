@@ -2,30 +2,49 @@ name: Generate Snake
 
 on:
   schedule:
-    # Ejecutar cada 6 horas
     - cron: "0 */6 * * *"
-  workflow_dispatch:  # Permite ejecutarlo manualmente desde la pestaña Actions
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Install dependencies (optional)
+        run: |
+          # no obligatorio, pero por si la action lo necesita
+          echo "No dependencies required"
 
       - name: Generate snake animation
-        uses: Platane/snk@v3
+        uses: Platane/snk@master
+        id: gen_snake
         with:
           github_user_name: ORenox
-          outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake.gif
+          gif_out_path: dist/github-contribution-grid-snake.gif
+          svg_out_path: dist/github-contribution-grid-snake.svg
 
-      - name: Push to output branch
-        uses: crazy-max/ghaction-github-pages@v3
+      - name: Show generated files (debug)
+        run: |
+          echo "Listing dist folder:"
+          ls -la dist || echo "dist not found"
+
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git switch -c output || git switch output
+          mkdir -p dist
+          git add dist || true
+          git commit -m "chore: update snake outputs" || echo "no changes to commit"
+
+      - name: Push output branch
+        uses: ad-m/github-push-action@v0.6.0
         with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: output
+          force: true
