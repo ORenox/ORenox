@@ -44,7 +44,7 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 <div align = "center">
-  ![snake gif](https://github.com/ORenox/ORenox/blob/output/github-snake-dark.svg)
+  <img src="https://github.com/ORenox/ORenox/blob/output/github-snake-dark.svg" alt="snake gif" />
 </div>
 
 
